@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PlayerStats.Model;
 
 namespace PlayerStats.View
 {
@@ -26,9 +27,17 @@ namespace PlayerStats.View
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void RefreshTable() => dgvPlayers.DataSource = showPlayerController.GetPlayers();
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
+            PlayerStats.Model.Player player = new PlayerStats.Model.Player();
+            player.name = textBox1.Text;
+            player.points = int.Parse(textBox2.Text);
+            showPlayerController.CreatePlayer(player);
+            RefreshTable();
         }
+
     }
 }
